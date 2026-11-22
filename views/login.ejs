@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เข้าสู่ระบบ - IT Store</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light d-flex align-items-center" style="min-height: 100vh;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="card border-0 shadow p-4">
+          <h3 class="text-center fw-bold mb-3">🔐 เข้าสู่ระบบ IT Store</h3>
+          <% if (error) { %>
+            <div class="alert alert-danger"><%= error %></div>
+          <% } %>
+          <form action="/login" method="POST">
+            <div class="mb-3">
+              <label class="form-label">อีเมล</label>
+              <input type="email" name="email" class="form-control" required placeholder="admin@example.com">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">รหัสผ่าน</label>
+              <input type="password" name="password" class="form-control" required placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mb-3">เข้าสู่ระบบ</button>
+          </form>
+          <div class="bg-light p-3 rounded small text-muted">
+            <strong>บัญชีทดสอบสำหรับพรีเซนต์:</strong><br>
+            • Admin: <code>admin@example.com</code> / <code>NongBoss888</code><br>
+            • ลูกค้า: <code>customer@example.com</code> / <code>123456</code>
+          </div>
+          <div class="text-center mt-3">
+            <a href="/" class="text-decoration-none">← กลับหน้าร้านค้า</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
