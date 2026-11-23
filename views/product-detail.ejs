@@ -1,0 +1,27 @@
+<%- include('partials/header') %>
+
+<div class="card p-4 shadow-sm">
+    <div class="row align-items-center">
+        <div class="col-md-5 text-center">
+            <img src="<%= product.image %>" class="img-fluid rounded" style="max-height: 350px;">
+        </div>
+        <div class="col-md-7">
+            <span class="badge bg-danger mb-2"><%= product.category %></span>
+            <h2 class="fw-bold"><%= product.name %></h2>
+            <hr>
+            <p class="text-muted"><%= product.description %></p>
+            <h3 class="price-tag my-3">ราคา: ฿<%= product.price.toLocaleString() %></h3>
+            <p>สถานะสต็อก: <strong><%= product.stock %> ชิ้น</strong></p>
+
+            <form action="/cart/add/<%= product._id %>" method="POST" class="d-flex gap-2 mt-4">
+                <input type="number" name="quantity" value="1" min="1" max="<%= product.stock %>" class="form-control w-25">
+                <button type="submit" class="btn btn-red px-4" <%= product.stock <= 0 ? 'disabled' : '' %>>
+                    หยิบใส่ตะกร้า
+                </button>
+                <a href="/" class="btn btn-outline-secondary">กลับหน้าร้าน</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

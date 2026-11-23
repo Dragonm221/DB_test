@@ -1,0 +1,50 @@
+body {
+    background-color: #f4f6f9;
+    font-family: 'Prompt', sans-serif;
+}
+.navbar-it {
+    background-color: #111111;
+    border-bottom: 3px solid #e60000;
+}
+.brand-logo {
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: #ffffff !important;
+}
+.brand-logo span {
+    color: #e60000;
+}
+.product-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none;
+    border-radius: 10px;
+}
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+.price-tag {
+    color: #e60000;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+.btn-red {
+    background-color: #e60000;
+    color: white;
+    border: none;
+}
+.btn-red:hover {
+    background-color: #b30000;
+    color: white;
+}
+.payment-option {
+    border: 2px solid #dee2e6;
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.payment-option:has(input:checked) {
+    border-color: #e60000;
+    background-color: #fff5f5;
+}
