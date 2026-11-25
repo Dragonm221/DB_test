@@ -46,16 +46,16 @@ app.use((req, res, next) => {
   next();
 });
 
-// เชื่อมต่อฐานข้อมูล MongoDB Atlas และสร้างบัญชีทดสอบให้ตรงกับหน้า login.ejs
+
 mongoose.connect(process.env.MONGODB_URI)
   .then(async () => {
     console.log('✅ เชื่อมต่อฐานข้อมูล IT_Store บน MongoDB สำเร็จ');
-    // อัปเดตหรือสร้างบัญชี admin / 1234 และ user1 / 1234 ให้ตรงกับหน้า login.ejs
+    
     await User.updateOne(
-      { email: 'admin@example.com' },
-      { $set: { username: 'admin', password: '1234', fullName: 'ผู้ดูแลระบบ', role: 'admin' } },
-      { upsert: true }
-    );
+  { email: 'admin@example.com' },
+  { $set: { username: 'admin', password: process.env.ADMIN_PASSWORD || 'NongBoss888', fullName: 'ผู้ดูแลระบบ', role: 'admin' } },
+  { upsert: true }
+);
     await User.updateOne(
       { email: 'customer@example.com' },
       { $set: { username: 'user1', password: '1234', fullName: 'สมชาย ใจดี', role: 'customer' } },
@@ -211,7 +211,7 @@ app.post('/checkout', upload.fields([
     const slipFile = (req.files?.slipPromptpay?.[0]) || (req.files?.slipBank?.[0]);
     const slipUrl = slipFile ? `/uploads/slips/${slipFile.filename}` : '';
 
-    // 1. บันทึกคำสั่งซื้อลงคอลเลกชัน orders
+   
     const newOrder = await Order.create({
       userId: req.session.user._id,
       customerName,
@@ -228,7 +228,7 @@ app.post('/checkout', upload.fields([
       totalAmount: cart.totalPrice
     });
 
-    // 2. ลดจำนวนสต็อกในคอลเลกชัน products
+    
     for (const item of cart.items) {
       await Product.findByIdAndUpdate(item.productId, {
         $inc: { stock: -item.qty }
